@@ -1,8 +1,8 @@
 # Use Alpine Linux as the parent image
-FROM alpine:3.14
+FROM ubuntu:21.10
 
 # Update OS packages
-#RUN apk update && apk upgrade
+RUN apt-get -y update && apt-get -y upgrade
 
 # Get & install LLVM 12 release
 #RUN git clone https://github.com/llvm/llvm-project.git \
