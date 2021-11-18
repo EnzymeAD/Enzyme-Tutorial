@@ -33,10 +33,13 @@ double invmag(double* __restrict__ A, int n) {
 
 #ifdef CUSTOM
 
+
+// Returns { optional tape, original return (if pointer), shadow return (if pointer) }
 void aug_rsqrt(float x) {
   // Nothing need to be done in augmented forward pass
 }
 
+// Arguments: all pointers duplicated, gradient of the return, tape (if provided)
 float rev_rsqrt(float x, float grad_out) {
   // derivative of x^(-1/2) = -1/2 x^(-3/2)
   return -grad_out * Q_rsqrt(x) / (2 * x);
