@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+// Function to differentiate
 double square(double x) {
   return x * x;
 }
