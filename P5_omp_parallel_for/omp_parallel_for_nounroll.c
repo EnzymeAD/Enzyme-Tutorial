@@ -5,6 +5,7 @@
 void omp(float *x, int npoints) {
 
 #pragma omp parallel for
+#pragma nounroll
     for (int i = 0; i < npoints; i++) {
         x[i] *= x[i];
     }
