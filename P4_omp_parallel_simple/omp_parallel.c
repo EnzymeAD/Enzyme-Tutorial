@@ -49,9 +49,9 @@ int main() {
 
     // Alter the entries
 #ifdef FORWARD
-    sub(array, 10000);
+    sub(array, 1000);
 #else
-    __enzyme_autodiff((void*)sub, array, d_array, 10000);
+    __enzyme_autodiff((void*)sub, array, d_array, 1000);
 #endif
 
     return 0;
