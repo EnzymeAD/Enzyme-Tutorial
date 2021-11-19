@@ -1,4 +1,4 @@
-all: omp_parallel_simple.o
+all: omp_parallel_for_nounroll.o
 
 clean:
 	rm -f *.o *.ll
