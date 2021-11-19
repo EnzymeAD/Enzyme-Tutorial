@@ -7,10 +7,10 @@ clean:
 	../dockerscript.sh clang-12 /host/$^ -O1 -Xclang -disable-llvm-passes -fno-vectorize -fno-slp-vectorize -ffast-math -fno-unroll-loops -o /host/$@ -S -emit-llvm
 
 %-enzymeO2.ll: %-unopt.ll
-	../dockerscript.sh opt-12 /host/$^ -load /Enzyme/enzyme/build/Enzyme/LLVMEnzyme-12.so -enzyme -O2 -o /host/$@ -S -enzyme-print-activity
+	../dockerscript.sh opt-12 /host/$^ -load /Enzyme/enzyme/build/Enzyme/LLVMEnzyme-12.so -enzyme -O2 -o /host/$@ -S
 
 %-O2enzyme.ll: %-unopt.ll
-	../dockerscript.sh opt-12 /host/$^ -load /Enzyme/enzyme/build/Enzyme/LLVMEnzyme-12.so -O2 -enzyme -o /host/$@ -S -enzyme-print-activity
+	../dockerscript.sh opt-12 /host/$^ -load /Enzyme/enzyme/build/Enzyme/LLVMEnzyme-12.so -O2 -enzyme -o /host/$@ -S
 
 %.o: %.ll
 	../dockerscript.sh clang-12 -O2 /host/$^ -o /host/$@ -lm
