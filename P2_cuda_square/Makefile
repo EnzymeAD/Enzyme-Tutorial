@@ -1,7 +1,7 @@
 # Environment Variables
 CUDA_PATH ?= /usr/local/cuda-11.2
-ENZYME_PATH ?= /home/lpaehler/Work/temporary_files/Enzyme/build/ClangEnzyme-13.so
-CLANG_PATH ?= /home/lpaehler/Work/temporary_files/llvm-project/build/bin/clang++
+ENZYME_PATH ?= /home/lpaehler/Work/Dev-Tools/llvm-13/Enzyme/enzyme/build/Enzyme
+CLANG_PATH ?= /home/lpaehler/Work/Dev-Tools/llvm-13/llvm-project/build/bin/clang++
 SM_VERSION  = 70
 
 CC := $(CLANG_PATH)
