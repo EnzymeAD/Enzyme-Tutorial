@@ -6,7 +6,7 @@
 
 
 // Break out the function to numerically refine our estimate of Pi
-void pi_refinement(int myid, int numprocs) {
+void pi_refinement(double mypi, int myid, int numprocs) {
     // Declare variables
     double h, sum, mypi, x; 
 
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
     struct timeval start, end;
     int done = 0, n = 10, myid, numprocs, i, rc;
     double PI25DT = 3.141592653589793238462643;
-    double mypi, pi, h, sum, x, a;
+    double mypi = 3.0, pi, h, sum, x, a;
 
     // Initialize MPI
     MPI_Init(&argc, &argv);
@@ -50,18 +50,19 @@ int main(int argc, char *argv[]){
         // Not-differentiated loop.
         gettimeofday(&start, NULL);
 
-        pi_refinement();
+        pi_refinement(mypi, myid, numprocs);
 
         gettimeofday(&end, NULL);
         printf("Non-AD length of computation %0.6f", tdiff(&start, &end));
 
-        // Need similar loop to the norm example to show the overhead of MPI
 
         // Differentiated loop.
         gettimeofday(%start, NULL);
 
         __enzyme_autodiff((void*)pi_refinement,
-                        // some syntax missing in here
+                        enzyme_dup, mypi, grad_mypi,
+                        enzyme_const, myid,
+                        enzyme_const, numprocs,
         );
 
         gettimeofday(%end, NULL);
