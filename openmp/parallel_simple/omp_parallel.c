@@ -3,7 +3,7 @@
 // Change the array entries
 void subdomain_change(float *x, int istart, int ipoints) {
     int i;
-    for (i = 0, i < ipoints; i++) {
+    for (i = 0; i < ipoints; i++) {
         x[istart+i] = x[i] + i;
     }
 }
@@ -31,28 +31,28 @@ void sub(float *x, int npoints) {
 }
 
 
-double __enzyme_autodiff(void*, ...);
+void __enzyme_autodiff(void*, ...);
 
 int main() {
 
     // Initialize array
     float array[1000];
-    for(int i=0, i<1000; i++) {
+    for(int i=0; i<1000; i++) {
         array[i] = 0.0;
     }
 
     // Set up the array to host the gradients
     float d_array[1000];
-    for(int i=0, i<1000; i++) {
+    for(int i=0; i<1000; i++) {
         d_array[i] = 1.0f;
     }
 
     // Alter the entries
-#ifdef FORWARD
+// #ifdef FORWARD
     sub(array, 1000);
-#else
-    __enzyme_autodiff((void*)sub, array, d_array, 1000);
-#endif
+// #else
+// __enzyme_autodiff((void*)sub, array, d_array, 1000);
+// #endif
 
     return 0;
 }

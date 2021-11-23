@@ -17,13 +17,13 @@ int main() {
 
     // Initialize array
     float array[1000];
-    for(int i=0, i<1000; i++) {
+    for(int i=0; i<1000; i++) {
         array[i] = i + 0.5;
     }
 
     // Set up the array to host the gradients
     float d_array[1000];
-    for(int i=0, i<1000; i++) {
+    for(int i=0; i<1000; i++) {
         d_array[i] = 1.0f;
     }
 
