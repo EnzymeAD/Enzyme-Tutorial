@@ -5,13 +5,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update && apt-get install -y --no-install-recommends curl gnupg lsb-core software-properties-common \
     && curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add - \
     && apt-add-repository "deb http://apt.llvm.org/`lsb_release -c | cut -f2`/ llvm-toolchain-`lsb_release -c | cut -f2`-12 main" \
-    && apt-get install -y --no-install-recommends autoconf cmake ninja-build gcc g++ libtool gfortran llvm-12-dev lld-12 clang-12 libopenmpi-dev openmpi-bin git \
+    && apt-get install -y --no-install-recommends autoconf cmake ninja-build gcc g++ libtool gfortran llvm-12-dev lld-12 clang-12 libclang-12-dev libopenmpi-dev openmpi-bin git \
     && apt-get autoremove -y --purge \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Get & install Enzyme
-RUN git clone https://github.com/wsmoses/Enzyme.git \
+RUN git clone https://github.com/wsmoses/Enzyme.git -b byref \
     && cd Enzyme/enzyme \
     && mkdir build && cd build \
     && cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug \
